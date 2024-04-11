@@ -11,7 +11,7 @@ try {
 
 console.log('- throw new error -');
 try {
-    throw __;
+    throw new ReferenceError('turtle is not defined');
 } catch (err) {
     console.error(err);
 

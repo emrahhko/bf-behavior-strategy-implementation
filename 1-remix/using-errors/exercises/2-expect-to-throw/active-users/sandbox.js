@@ -1,5 +1,22 @@
-import { listActiveUsers } from './list-active-users.js';
-import { findActiveUsers } from './find-active-users.js';
+const listActiveUsers = (users) => {
+    const activeUsers = findActiveUsers(users);
+    return activeUsers.map((user) => user.userName);
+};
+
+
+const findActiveUsers = (users) => {
+  if (!Array.isArray(users)) {
+    throw new TypeError('users is not an array');
+  }
+  if (users.some((user) => !user || typeof user !== 'object')) {
+    throw new TypeError('users is not an array of objects');
+  }
+  if (users.some((user) => !('active' in user))) {
+    throw new TypeError('users is not an array of user objects');
+  }
+
+  return users.filter((user) => user.active === true);
+};
 
 const people = [
     { userName: 'a', name: '', active: true },

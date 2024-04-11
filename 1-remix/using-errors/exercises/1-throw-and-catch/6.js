@@ -14,7 +14,7 @@ try {
 
 console.log('- throw new error -');
 try {
-    throw __;
+    throw new TypeError('userAge is not iterable');
 } catch (err) {
     console.error(err);
 

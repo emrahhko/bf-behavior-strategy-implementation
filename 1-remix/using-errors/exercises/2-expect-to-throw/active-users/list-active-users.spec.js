@@ -1,4 +1,23 @@
-import { listActiveUsers } from './list-active-users.js';
+const listActiveUsers = (users) => {
+    const activeUsers = findActiveUsers(users);
+    return activeUsers.map((user) => user.userName);
+};
+
+
+const findActiveUsers = (users) => {
+  if (!Array.isArray(users)) {
+    throw new TypeError('users is not an array');
+  }
+  if (users.some((user) => !user || typeof user !== 'object')) {
+    throw new TypeError('users is not an array of objects');
+  }
+  if (users.some((user) => !('active' in user))) {
+    throw new TypeError('users is not an array of user objects');
+  }
+
+  return users.filter((user) => user.active === true);
+};
+
 
 describe('listActiveUsers: an array of all active user names', () => {
     describe('filters out the inactive users from a valid array', () => {
@@ -8,8 +27,8 @@ describe('listActiveUsers: an array of all active user names', () => {
         });
         it('returns an empty array when there are only inactive users', () => {
             const actual = listActiveUsers([
-                { userName: 'a', name: '', active: false },
-                { userName: 'b', name: '', active: false },
+                { userName: 'a', name: 'x', active: false },
+                { userName: 'b', name: 'x', active: false },
             ]);
             expect(actual).toEqual([]);
         });
