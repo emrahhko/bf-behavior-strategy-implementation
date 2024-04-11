@@ -1,4 +1,17 @@
-import { findActiveUsers } from './find-active-users.js';
+const findActiveUsers = (users) => {
+  if (!Array.isArray(users)) {
+    throw new TypeError('users is not an array');
+  }
+  if (users.some((user) => !user || typeof user !== 'object')) {
+    throw new TypeError('users is not an array of objects');
+  }
+  if (users.some((user) => !('active' in user))) {
+    throw new TypeError('users is not an array of user objects');
+  }
+
+  return users.filter((user) => user.active === true);
+};
+
 
 describe('findActiveUsers: returns all users with .active === true', () => {
     describe('filters out the inactive users from a valid array', () => {
@@ -8,50 +21,50 @@ describe('findActiveUsers: returns all users with .active === true', () => {
         });
         it('returns an empty array when there are only inactive users', () => {
             const actual = findActiveUsers([
-                { userName: '', name: '', active: false },
-                { userName: '', name: '', active: false },
+                { userName: 'John1', name: 'John', active: false },
+                { userName: 'Jeanne1', name: 'Jeanne', active: false },
             ]);
             expect(actual).toEqual([]);
         });
         it('returns all users when all users are active', () => {
             const actual = findActiveUsers([
-                { userName: '', name: '', active: true },
-                { userName: '', name: '', active: true },
+                { userName: 'Joe1', name: 'Joe', active: true },
+                { userName: 'Kate1', name: 'Kate', active: true },
             ]);
             expect(actual).toEqual([
-                { userName: '', name: '', active: true },
-                { userName: '', name: '', active: true },
+                { userName: 'Joe1', name: 'Joe', active: true },
+                { userName: 'Kate1', name: 'Kate', active: true },
             ]);
         });
         it('correctly filters an array of mixed users', () => {
             const actual = findActiveUsers([
-                { userName: '', name: '', active: true },
-                { userName: '', name: '', active: false },
-                { userName: '', name: '', active: false },
-                { userName: '', name: '', active: true },
+                { userName: 'Hugo1', name: 'Hugo', active: true },
+                { userName: 'Lol1', name: 'Lol', active: false },
+                { userName: 'Franck1', name: 'Franck', active: false },
+                { userName: 'Kris1', name: 'Kris', active: true },
             ]);
             expect(actual).toEqual([
-                { userName: '', name: '', active: true },
-                { userName: '', name: '', active: true },
+                { userName: 'Hugo1', name: 'Hugo', active: true },
+                { userName: 'Kris1', name: 'Kris', active: true },
             ]);
         });
     });
     describe('uses the argument correctly', () => {
         it('does not modify the argument', () => {
             const usersArg = [
-                { userName: '', name: '', active: true },
-                { userName: '', name: '', active: false },
+                { userName: 'Cage1', name: 'Cage', active: true },
+                { userName: 'Jon1', name: 'Jon', active: false },
             ];
             findActiveUsers(usersArg);
             expect(usersArg).toEqual([
-                { userName: '', name: '', active: true },
-                { userName: '', name: '', active: false },
+                { userName: 'Cage1', name: 'Cage', active: true },
+                { userName: 'Jon1', name: 'Jon', active: false },
             ]);
         });
         it('returns a new array', () => {
             const usersArg = [
-                { userName: '', name: '', active: true },
-                { userName: '', name: '', active: false },
+                { userName: 'Dan1', name: 'Dan', active: true },
+                { userName: 'Kall1', name: 'Kall', active: false },
             ];
             const returned = findActiveUsers(usersArg);
             const areNotTheSameArray = usersArg !== returned;

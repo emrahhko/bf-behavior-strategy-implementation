@@ -1,6 +1,16 @@
-// #todo
+/**
+ * takes an array of user object and return a boolean value that say if the array
+ * includes only numbers
+ * 
+ * @param {object[]} [arr] - an array of user object
+ * @returns {boolean} return return a boolean value that say if the array
+ * includes only numbers.
+ */
 
-import { isArrayOfNumbers } from './is-array-of-numbers.js';
+
+const isArrayOfNumbers = (arr = []) => {
+  return arr.every(num => typeof num === 'number' && !isNaN(num));
+};
 
 describe('isArrayOfNumbers: determines if an array contains only valid numbers', () => {
     describe('it returns FALSE when:', () => {

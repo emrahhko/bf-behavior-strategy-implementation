@@ -1,6 +1,17 @@
-// #todo
+/**
+ * return the smallest number of an array of user objects.
+ * 
+ * @param {object[]} numbers - array of numbers.
+ * @returns {object[]} return the smallest number in an array of numbers.
+ * 
+ */
 
-import { findSmallestNumber } from './find-smallest-number.js';
+const findSmallestNumber = (numbers = []) => {
+  if (!Array.isArray(numbers)) {
+    throw new TypeError('Input is not an array');
+  }
+  return numbers.sort((a, b) => a - b)[0];
+};
 
 describe('findSmallestNumber: returns the smallest number in an array of numbers', () => {
     describe('when the array is not empty, it returns a number', () => {

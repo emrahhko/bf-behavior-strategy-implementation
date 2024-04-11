@@ -1,6 +1,20 @@
-// #todo
+/**
+ * returns the number of even numbers in an array of numbers
+ * 
+ * @param {object[]} [numbers] - an array of numbers
+ * @returns {number} return the number of even numbers in an array
+ */
 
-import { numberOfEvens } from './number-of-evens.js';
+const sumNumbers = (numbers = []) => {
+  return numbers.reduce((sum, num) => sum + num, 0);
+};
+
+const numberOfEvens = (numbers = []) => {
+  const evenNumbers = numbers.filter(num => num % 2 === 0);
+  return evenNumbers.length;
+};
+
+
 
 describe('numberOfEvens: returns the number of even numbers in an array of numbers', () => {
     describe('when the array is not empty, it returns a number', () => {
