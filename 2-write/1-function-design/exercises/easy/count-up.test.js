@@ -11,6 +11,18 @@
 
 // -------- your solutions --------
 
+// =============== Strategie ===============
+
+/* -- iteration that will stop when reached the limit number given by the user (max) --
+   -- each increased number will be add to an array --
+
+  1. create a new empty array (result) to store the increased number
+  2. iterate from 0 to max increasing by 1 in each iteration
+    a. add each increased number to the array (result)
+  return: the array (result)
+
+*/
+
 const secretSolution = (max = 0) => {
   let result = [];
   for (let i = 0; i <= max; i++) {

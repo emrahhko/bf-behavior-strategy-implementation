@@ -8,4 +8,7 @@ import { isArrayOfNumbers } from './is-array-of-numbers.js';
  * @param {*} numbers
  * @returns
  */
-export const numberOfEvens = (numbers = []) => {};
+const numberOfEvens = (numbers = []) => {
+  const evenNumbers = numbers.filter(num => num % 2 === 0);
+  return evenNumbers.length;
+};
