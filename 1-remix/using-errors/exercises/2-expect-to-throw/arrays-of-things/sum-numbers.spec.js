@@ -5,9 +5,18 @@
  * @returns {number} return sum of the numbers of an array
  */
 
-const sumNumbers = (numbers = []) => {
+const sumNumbers = (numbers = []) => { // Solution1
   return numbers.reduce((sum, num) => sum + num, 0);
 };
+
+const sumNumbers = (numbers = []) => { // Solution2
+  let result = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    result = result + numbers[i];
+  }
+  return result;
+}
+
 
 describe('sumNumbers: sums all the numbers in an array of numbers', () => {
   describe('when the array is not empty, it returns an number', () => {

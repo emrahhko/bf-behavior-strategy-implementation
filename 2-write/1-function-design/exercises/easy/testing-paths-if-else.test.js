@@ -11,42 +11,55 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+const solution1 = (value) => {
+  if (value) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+for (const solution of [secretSolution, solution1]) {
     /* Execution Paths
       when testing conditionals, you need to be test all paths
   */
     describe(solution.name + ': determines if a value is truthy', () => {
         describe('solution can identify truthy values', () => {
             it('non-empty strings -> true', () => {
-                const actual = solution(_);
+                const actual = solution('test');
                 expect(actual).toEqual(true);
             });
             it('numbers that are not 0 or NaN -> true', () => {
-                const actual = _;
+                const actual = solution(61);
                 expect(actual).toEqual(true);
             });
             it('true -> true', () => {
-                expect(solution(_)).toEqual(true);
+                expect(solution(true)).toEqual(true);
             });
         });
         describe('solution can identify falsy values', () => {
             it('"" -> flase', () => {
-                _;
+                const actual = solution1('');
+                expect(actual).toEqual(false);
             });
             it('0 -> false', () => {
-                _;
+                const actual = solution(0);
+                expect(actual).toEqual(false);
             });
             it('NaN -> false', () => {
-                _;
+                const actual = solution1(NaN);
+                expect(actual).toEqual(false)
             });
             it('false -> false', () => {
-                _;
+                const actual = solution1(false);
+                expect(actual).toEqual(false);
             });
             it('undefined -> false', () => {
-                _;
+                const actual = solution(undefined);
+                expect(actual).toEqual(false)
             });
             it('null -> false', () => {
-                _;
+                expect(solution(null)).toEqual(false);
             });
         });
     });

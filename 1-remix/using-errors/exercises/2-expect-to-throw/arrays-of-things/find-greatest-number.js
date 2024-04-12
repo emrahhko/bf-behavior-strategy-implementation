@@ -8,4 +8,9 @@ import { isArrayOfNumbers } from './is-array-of-numbers.js';
  * @param {*} numbers
  * @returns
  */
-export const findGreatestNumber = (numbers = []) => {};
+const findGreatestNumber = (numbers = []) => {
+  if (!Array.isArray(numbers)) {
+    throw new TypeError('Input is not an array');
+  }
+  return numbers.sort((a, b) => b - a)[0];
+};

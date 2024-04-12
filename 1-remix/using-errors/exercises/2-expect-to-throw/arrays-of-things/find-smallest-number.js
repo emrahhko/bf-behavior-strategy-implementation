@@ -8,4 +8,10 @@ import { isArrayOfNumbers } from './is-array-of-numbers.js';
  * @param {*} numbers
  * @returns
  */
-export const findSmallestNumber = (numbers = []) => {};
+const findSmallestNumber = (numbers = []) => {
+  if (!Array.isArray(numbers)) {
+    throw new TypeError('Input is not an array');
+  }
+  return numbers.sort((a, b) => a - b)[0];
+};
+

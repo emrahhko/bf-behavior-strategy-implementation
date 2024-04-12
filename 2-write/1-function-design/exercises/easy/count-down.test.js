@@ -11,10 +11,23 @@
 
 // -------- your solutions --------
 
-const secretSolution = (number = 0) => {
+// =============== Strategie ===============
+
+/* -- user give a number (start) and go down till 0 from that star --
+   -- append each decreased numbers to an array till 0 --
+
+  1. create a new empty array (result) to store the decreased number
+  2. iterate from start to 0 decreasing by 1 in each iteration
+    a. add each decreased number to the array (result)
+  return: the array (result)
+
+*/
+
+const secretSolution = (start = 0) => {
   let result =[];
-  for (let i = number; i >= 0; i--) {
+  for (let i = start; i >= 0; i--) {
     result.push(i);
+    console.log(i);
   }
   return result;
 }
