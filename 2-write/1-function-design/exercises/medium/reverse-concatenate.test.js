@@ -11,12 +11,41 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
+const solution1 = (strings = []) => {
+  if (!Array.isArray(strings)) {
+    throw new TypeError('arguments is not an array');
+  }
+  const isAllStrings = strings.some((item) => typeof item !== 'string');
+  if (isAllStrings) {
+    throw new TypeError('arr do not contain onyl string');
+  }
+  let result = '';
+  strings.forEach((item) => {
+    result = String(item) + result;
+  });
+  return result;
+};
+
+for (const solution of [secretSolution, solution1]) {
+  describe(
+    solution.name +
+      ': function that takes an array, reverse, and combines the strings',
+    () => {
+      describe('A function that takes an array of strings, reverses it, and combines the strings', () => {
+        it('with only strings', () => {
+          expect(solution(['a', 'b', 'c', 'd'])).toEqual('dcba');
         });
-    });
+      });
+      describe('different error type', () => {
+        it('argument is not an array', () => {
+          expect(() => solution('not an array')).toThrow(TypeError);
+        });
+        it('array do not contain only string', () => {
+          expect(() => solution(['a', 'b', 'c', 3, 4])).toThrow(TypeError);
+        });
+      });
+    },
+  );
 }
 
 // minified solution for testing your tests
