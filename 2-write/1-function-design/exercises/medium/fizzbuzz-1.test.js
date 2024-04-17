@@ -13,58 +13,84 @@
  *  @returns {number|string} either "fizz", "buzz", "fizzbuzz" or the original number
  */
 
+const solution2 = (num = 0) => {
+  return num % 3 === 0 && num % 5 === 0
+    ? 'fizzbuzz'
+    : num % 3 === 0
+    ? 'fizz'
+    : num % 5 === 0
+    ? 'buzz'
+    : num;
+};
+
+const solution1 = (num = 0) => {
+  let result = '';
+  if (num % 3 === 0 && num % 5 === 0) {
+    result = 'fizzbuzz';
+  } else if (num % 3 === 0) {
+    result = 'fizz';
+  } else if (num % 5 === 0) {
+    result = 'buzz';
+  } else {
+    result = num;
+  }
+  return result;
+};
+
+const solutions = [secretSolution, solution1, solution2];
+
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
-    describe(solution.name + ': fizbuzzish', () => {
-        describe('default parameter is 0', () => {
-            it('returns "fizzbuzz" when no argument is passed', () =>
-                expect(solution()).toEqual('fizzbuzz'));
-        });
-
-        describe('not divisible by 3 or 5', () => {
-            it('1 -> 1', () => {
-                expect(solution(1)).toEqual(1);
-            });
-            it('2 -> 2', () => {
-                expect(solution(2)).toEqual(2);
-            });
-            // write more tests in this category
-        });
-
-        describe('only divisible by only 3', () => {
-            const expectedValue = 'fizz';
-            it('3 -> "fizz"', () => {
-                expect(solution(3)).toEqual(expectedValue);
-            });
-            it('6 -> "fizz"', () => {
-                expect(solution(6)).toEqual(expectedValue);
-            });
-            // write more tests in this category
-        });
-
-        describe('only divisible by only 5', () => {
-            const expectedValue = 'buzz';
-            it('5 -> "buzz"', () => {
-                expect(solution(5)).toEqual(expectedValue);
-            });
-            it('10 -> "buzz"', () => {
-                expect(solution(10)).toEqual(expectedValue);
-            });
-            // write more tests in this category
-        });
-
-        describe('divisible by 5 and 3', () => {
-            const expectedValue = 'fizzbuzz';
-            it('15 -> "fizzbuzz"', () => {
-                expect(solution(15)).toEqual(expectedValue);
-            });
-            it('30 -> "fizzbuzz"', () => {
-                expect(solution(30)).toEqual(expectedValue);
-            });
-            // write more tests in this category
-        });
+for (const solution of solutions) {
+  describe(solution.name + ': fizbuzzish', () => {
+    describe('default parameter is 0', () => {
+      it('returns "fizzbuzz" when no argument is passed', () =>
+        expect(solution()).toEqual('fizzbuzz'));
     });
+
+    describe('not divisible by 3 or 5', () => {
+      it('1 -> 1', () => {
+        expect(solution(1)).toEqual(1);
+      });
+      it('2 -> 2', () => {
+        expect(solution(2)).toEqual(2);
+      });
+      // write more tests in this category
+    });
+
+    describe('only divisible by only 3', () => {
+      const expectedValue = 'fizz';
+      it('3 -> "fizz"', () => {
+        expect(solution(3)).toEqual(expectedValue);
+      });
+      it('6 -> "fizz"', () => {
+        expect(solution(6)).toEqual(expectedValue);
+      });
+      // write more tests in this category
+    });
+
+    describe('only divisible by only 5', () => {
+      const expectedValue = 'buzz';
+      it('5 -> "buzz"', () => {
+        expect(solution(5)).toEqual(expectedValue);
+      });
+      it('10 -> "buzz"', () => {
+        expect(solution(10)).toEqual(expectedValue);
+      });
+      // write more tests in this category
+    });
+
+    describe('divisible by 5 and 3', () => {
+      const expectedValue = 'fizzbuzz';
+      it('15 -> "fizzbuzz"', () => {
+        expect(solution(15)).toEqual(expectedValue);
+      });
+      it('30 -> "fizzbuzz"', () => {
+        expect(solution(30)).toEqual(expectedValue);
+      });
+      // write more tests in this category
+    });
+  });
 }
 
 // minified solution for testing your tests
