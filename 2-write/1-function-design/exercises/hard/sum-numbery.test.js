@@ -12,29 +12,78 @@
 
 // -------- your solutions --------
 
+const solution2 = (strings = []) => {
+  if (!Array.isArray(strings)) {
+    throw new TypeError('arg is not an array');
+  }
+
+  if (strings.some((item) => typeof item !== 'string')) {
+    throw new TypeError('array do not containt only string');
+  }
+
+  return strings.reduce((acc, next) => acc + Number(next), 0);
+};
+
+const solution1 = (strings = []) => {
+  const newArr = [...strings];
+  if (!Array.isArray(strings)) {
+    throw new TypeError('parameter is not an array');
+  }
+
+  const isNotAllString = newArr.some((item) => typeof item !== 'string');
+  if (isNotAllString) {
+    throw new TypeError('array contain non-string');
+  }
+  let result = 0;
+  newArr.forEach((item) => {
+    result = result + Number(item);
+  });
+  return result;
+};
+
 const mapFilterReduce = (arr) => {
-    // these work, you need to pass them to the right array methods
-    const isNotNaN = (entry) => !Number.isNaN(entry);
-    const sumNumbers = (acc, next) => acc + next;
-    const castToNumber = (entry) => Number(entry);
+  // these work, you need to pass them to the right array methods
+  const isNotNaN = (entry) => !Number.isNaN(entry);
+  const sumNumbers = (acc, next) => acc + next;
+  const castToNumber = (entry) => Number(entry);
 
-    // fill in the array methods and pass in the correct logic
-    const sumOfNumberies = arr._(_)._(_)._(_, _);
+  // fill in the array methods and pass in the correct logic
+  const sumOfNumberies = arr
+    .map(castToNumber(entry))
+    .filter(isNotNaN(entry))
+    .reduce(sumNumbers, acc + next);
 
-    return sumOfNumberies;
+  return sumOfNumberies;
 };
 
 // -------- your solutions --------
 
 for (const solution of [
-    secretSolution,
-    // mapFilterReduce,
+  secretSolution,
+  solution1,
+  solution2,
+  // mapFilterReduce,
 ]) {
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
-        });
+  describe(solution.name + 'sums all numbery strings in an array', () => {
+    describe('sums all numbery strings', () => {
+      it('with numbery items', () => {
+        expect(solution(['1', '2', '3', '4'])).toEqual(10);
+      });
+      it('with numbery items 2', () => {
+        expect(solution(['5', '6', '5'])).toEqual(16);
+      });
     });
+    describe('different error type', () => {
+      it('parameter is not an array', () => {
+        expect(() => solution('not')).toThrow(TypeError);
+      });
+      it('array contain different type', () => {
+        expect(() => solution([2, '3', 6, null, undefined, NaN])).toThrow(
+          TypeError,
+        );
+      });
+    });
+  });
 }
 
 // minified solution for testing your tests
