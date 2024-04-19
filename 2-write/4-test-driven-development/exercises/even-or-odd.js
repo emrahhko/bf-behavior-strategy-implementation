@@ -10,4 +10,17 @@
  *
  * evenOrOdd([1, 2]); // ['odd', 'even']
  */
-export const evenOrOdd = (nums = []) => {};
+export const evenOrOdd = (nums = []) => {
+  if (!Array.isArray(nums)) {
+    throw new TypeError('Argument is not an array');
+  }
+  const newArr = [];
+  nums.forEach((item) => {
+    if (item % 2 === 0) {
+      newArr.push('even');
+    } else {
+      newArr.push('odd');
+    }
+  });
+  return newArr;
+};

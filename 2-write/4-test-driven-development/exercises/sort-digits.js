@@ -18,4 +18,17 @@
  *
  * sortDigits(2321, false); // 3221
  */
-export const sortDigits = (toSort = 0, up = true) => {};
+export const sortDigits = (toSort = 0, up = true) => {
+  const stringToSort = String(toSort);
+  let result ='';
+  if (up === true) {
+    result = stringToSort.split('').sort(function (a, b) {
+      return a - b;
+    });
+  } else {
+    result = stringToSort.split('').sort(function (a, b) {
+      return b - a;
+    });
+  }
+  return Number(result.join(''));
+};
