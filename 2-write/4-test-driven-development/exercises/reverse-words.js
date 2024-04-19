@@ -12,4 +12,9 @@
  *
  * reverseWords('hello world!'); // 'olleh dlrow!'
  */
-export const reverseWords = (text = '') => {};
+export const reverseWords = (text = '') => {
+  if (typeof text !== 'string') {
+    throw new TypeError('argument is not a string');
+  }
+  return text.split('').reverse().join('');
+}

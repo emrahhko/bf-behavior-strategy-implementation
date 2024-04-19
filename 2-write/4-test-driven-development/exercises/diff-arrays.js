@@ -21,4 +21,11 @@
  *
  * diffArrays([1, 2, 3], [4, 5]); // [1, 2, 3, 4, 5]
  */
-export const diffArrays = (a = [], b = []) => {};
+export const diffArrays = (a = [], b = []) => {
+  if (!Array.isArray(a) && !Array.isArray(b)) {
+    throw new TypeError('arguments are not arrays');
+  }
+  const diffA = a.filter(item => !b.includes(item));
+  const diffB = b.filter(item => !a.includes(item));
+  return [...diffA, ...diffB];
+};
